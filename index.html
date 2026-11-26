@@ -1,70 +1,183 @@
-
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>KING WIN</title>
 <style>
-body{margin:0;background:#100e0a;color:white;
-font-family:Arial;text-align:center}
-header{background:#211a0d;padding:25px;
-border-bottom:2px solid #d6a83b}
-h1,h2{color:#e9bd55}
-.card{background:#211c12;border:1px solid #98752e;
-border-radius:15px;padding:22px;margin:18px auto;
-max-width:380px}
-button{background:#d6a83b;color:#171109;
-border:0;padding:13px;border-radius:8px;
-width:100%;font-weight:bold;margin-top:10px}
-input{margin:10px;color:white}
-#qr{max-width:200px;display:none;margin:15px auto}
+*{box-sizing:border-box}
+body{margin:0;background:#0d0b08;color:#fff;
+font-family:Arial,sans-serif}
+header{background:#19130a;padding:18px;
+border-bottom:2px solid #d5a83b;
+display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:25px;font-weight:bold;color:#edc35d}
+button{background:#d5a83b;color:#171109;border:0;
+padding:12px;border-radius:9px;font-weight:bold;cursor:pointer}
+nav{display:flex;justify-content:space-around;
+background:#20190e;padding:13px;position:sticky;top:0}
+nav button{background:none;color:#f0ca70;padding:8px}
+main{max-width:600px;margin:auto;padding:15px}
+.hero{background:linear-gradient(135deg,#49300b,#100d08);
+padding:28px 15px;text-align:center;border-radius:16px;
+border:1px solid #bd9136;margin:16px 0}
+h1,h2,h3{color:#efc55e}
+.card{background:#1c1811;border:1px solid #755c2c;
+border-radius:14px;padding:17px;margin:13px 0}
+.games{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.game{background:#292013;border:1px solid #81652d;
+padding:20px 8px;text-align:center;border-radius:12px}
+.game b{display:block;color:#f0c967;margin-top:8px}
+input{width:100%;padding:12px;margin:9px 0;
+background:#100e0a;border:1px solid #80652f;
+border-radius:8px;color:white}
+img{max-width:100%}
+#qr{width:210px;max-height:210px;object-fit:contain;
+display:none;margin:15px auto}
+.page{display:none}
+.page.active{display:block}
+.muted{color:#b9ad91;font-size:13px}
+.full{width:100%;margin-top:10px}
 </style>
 </head>
 <body>
 <header>
-<h1>👑 KING WIN</h1>
-<p>Play • Enjoy • Collect Points</p>
+<div class="logo">👑 KING WIN</div>
+<button onclick="show('wallet')">Wallet</button>
 </header>
+
+<nav>
+<button onclick="show('home')">Home</button>
+<button onclick="show('games')">Games</button>
+<button onclick="show('deposit')">Deposit</button>
+<button onclick="show('wallet')">Wallet</button>
+</nav>
+
+<main>
+<section id="home" class="page active">
+<div class="hero">
+<h1>WELCOME TO KING WIN</h1>
+<p>Premium Gaming Experience</p>
+<p>खेलें और आनंद लें</p>
+</div>
 <div class="card">
-<h2>Welcome / स्वागत है</h2>
-<p>Premium Free Games</p>
+<h2>Welcome Bonus</h2>
 <h1>24 Points</h1>
-<p>Promotional points • No cash value</p>
+<p class="muted">Promotional points only. No cash value.</p>
+<button class="full" onclick="show('games')">Explore Games</button>
+</div>
+<h2>Popular Games</h2>
+<div class="games">
+<div class="game">🎰<b>Lucky Slots</b></div>
+<div class="game">🎡<b>Roulette</b></div>
+<div class="game">🃏<b>Blackjack</b></div>
+<div class="game">🎲<b>Dice</b></div>
+<div class="game">♠️<b>Poker</b></div>
+<div class="game">♥️<b>Baccarat</b></div>
+</div>
+</section>
+
+<section id="games" class="page">
+<h1>Games Lobby</h1>
+<p>All games are currently in preview mode.</p>
+<div class="games">
+<div class="game">🎰<b>Slots</b></div>
+<div class="game">🎡<b>Roulette</b></div>
+<div class="game">🃏<b>Blackjack</b></div>
+<div class="game">🎲<b>Dice</b></div>
+<div class="game">♠️<b>Poker</b></div>
+<div class="game">♥️<b>Baccarat</b></div>
+<div class="game">🎯<b>Lucky Wheel</b></div>
+<div class="game">🚀<b>Arcade</b></div>
 </div>
 <div class="card">
-<h2>Admin QR Upload</h2>
-<p>Upload your QR image</p>
-<input type="file" accept="image/*" id="file">
-<img id="qr" alt="Payment QR">
-<button onclick="uploadQR()">Upload QR</button>
-<p id="status"></p>
+<h2>Game Activation</h2>
+<p>Games are currently disabled.</p>
+<p class="muted">Free-play games can be added separately.</p>
+</div>
+</section>
+
+<section id="deposit" class="page">
+<h1>Payment / भुगतान</h1>
+<div class="card">
+<h2>Payment Information</h2>
+<p>Optional voluntary support payment.</p>
+<p class="muted">This payment does not purchase betting credits or cash winnings.</p>
+<img id="qr" alt="Uploaded payment QR">
+<p id="qrnote">QR code will appear here after admin upload.</p>
+<p id="paystatus">No payment request submitted.</p>
+</div>
+</section>
+
+<section id="wallet" class="page">
+<h1>My Wallet</h1>
+<div class="card">
+<h2>Promotional Balance</h2>
+<h1 id="balance">24 Points</h1>
+<p class="muted">Non-transferable promotional points. No cash value.</p>
 </div>
 <div class="card">
-<h2>🎮 Free Quiz Game</h2>
-<p>भारत की राजधानी क्या है?</p>
-<button onclick="check(true)">दिल्ली</button>
-<button onclick="check(false)">मुंबई</button>
-<p id="answer"></p>
+<h2>Payment History</h2>
+<div id="history">No verified payments.</div>
 </div>
+</section>
+
+<section id="admin" class="page">
+<h1>Admin Dashboard</h1>
+<div class="card">
+<h2>Upload Payment QR</h2>
+<input type="file" id="qrfile" accept="image/*">
+<button class="full" onclick="uploadQR()">Save QR Image</button>
+<p id="uploadmsg"></p>
+</div>
+<div class="card">
+<h2>Payment Records</h2>
+<div id="records">No records.</div>
+</div>
+</section>
+
+<section class="card">
+<h2>Admin Access</h2>
+<input type="password" id="adminpass" placeholder="Admin password">
+<button class="full" onclick="adminLogin()">Admin Login</button>
+</section>
+</main>
+
 <script>
+function show(id){
+document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+document.getElementById(id).classList.add('active');
+}
+
+let balance=24;
+let qrImage="";
+let history=[];
+
 function uploadQR(){
-const f=document.getElementById('file').files[0];
-if(!f||!f.type.startsWith('image/')){
+const file=document.getElementById('qrfile').files[0];
+if(!file || !file.type.startsWith('image/')){
 alert('Please select an image');return;
 }
-const r=new FileReader();
-r.onload=()=>{
-document.getElementById('qr').src=r.result;
+const reader=new FileReader();
+reader.onload=()=>{
+qrImage=reader.result;
+document.getElementById('qr').src=qrImage;
 document.getElementById('qr').style.display='block';
-document.getElementById('status').textContent='QR uploaded in this session';
+document.getElementById('qrnote').textContent='Uploaded payment QR';
+document.getElementById('uploadmsg').textContent='QR uploaded for this browser session.';
 };
-r.readAsDataURL(f);
+reader.readAsDataURL(file);
 }
-function check(correct){
-document.getElementById('answer').textContent=
-correct?'Correct answer!':'Try again!';
+
+function adminLogin(){
+const pass=document.getElementById('adminpass').value;
+if(pass==='CHANGE_ME'){
+show('admin');
+}else{
+alert('Incorrect password');
 }
+}
+
 </script>
 </body>
   </html>
