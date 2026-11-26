@@ -1,1 +1,71 @@
 
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KING WIN</title>
+<style>
+body{margin:0;background:#100e0a;color:white;
+font-family:Arial;text-align:center}
+header{background:#211a0d;padding:25px;
+border-bottom:2px solid #d6a83b}
+h1,h2{color:#e9bd55}
+.card{background:#211c12;border:1px solid #98752e;
+border-radius:15px;padding:22px;margin:18px auto;
+max-width:380px}
+button{background:#d6a83b;color:#171109;
+border:0;padding:13px;border-radius:8px;
+width:100%;font-weight:bold;margin-top:10px}
+input{margin:10px;color:white}
+#qr{max-width:200px;display:none;margin:15px auto}
+</style>
+</head>
+<body>
+<header>
+<h1>👑 KING WIN</h1>
+<p>Play • Enjoy • Collect Points</p>
+</header>
+<div class="card">
+<h2>Welcome / स्वागत है</h2>
+<p>Premium Free Games</p>
+<h1>24 Points</h1>
+<p>Promotional points • No cash value</p>
+</div>
+<div class="card">
+<h2>Admin QR Upload</h2>
+<p>Upload your QR image</p>
+<input type="file" accept="image/*" id="file">
+<img id="qr" alt="Payment QR">
+<button onclick="uploadQR()">Upload QR</button>
+<p id="status"></p>
+</div>
+<div class="card">
+<h2>🎮 Free Quiz Game</h2>
+<p>भारत की राजधानी क्या है?</p>
+<button onclick="check(true)">दिल्ली</button>
+<button onclick="check(false)">मुंबई</button>
+<p id="answer"></p>
+</div>
+<script>
+function uploadQR(){
+const f=document.getElementById('file').files[0];
+if(!f||!f.type.startsWith('image/')){
+alert('Please select an image');return;
+}
+const r=new FileReader();
+r.onload=()=>{
+document.getElementById('qr').src=r.result;
+document.getElementById('qr').style.display='block';
+document.getElementById('status').textContent='QR uploaded in this session';
+};
+r.readAsDataURL(f);
+}
+function check(correct){
+document.getElementById('answer').textContent=
+correct?'Correct answer!':'Try again!';
+}
+</script>
+</body>
+  </html>
+  
